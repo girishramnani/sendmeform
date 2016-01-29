@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static "style.css" %}">
+    <link rel="stylesheet" href="{% static "messages.css" %}">
+{% endblock %}
+
+{% block body %}
+   {% include "navbar.html" %}
+
+
+    <div class="success message">
+     <h3>Congrats, you did it!</h3>
+     <p>This is just a success notification message.</p>
+    </div>
+
+
+<div id="content-wrapper" class="mui--text-center">
+
+<div class="mui-container-fluid padding-top">
+    <div class="mui-row">
+        <div class="mui-col-sm-7 mui-col-sm-offset-1">
+            <div class="mui-panel">
+            <h1>Send me the token</h1>
+                <br>
+
+                <div class="mui-divider"></div>
+
+                <br>
+                <br>
+                <form class=".mui-form--inline" action="" method="post">
+
+
+                    {% csrf_token %}
+                      <div class="mui-textfield reduced-width mui-textfield--float-label">
+                          <input type="email" name="email" id="email">
+                          <label>Email address</label>
+                      </div>
+
+
+                    <br>
+                    <button type="submit" class="mui-btn mui-btn--raised">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+
+
+<footer>
+  <div class="mui-container mui--text-center">
+    sendmeform
+  </div>
+</footer>
+
+
+{% endblock %}
+
+{% block js %}
+    {{ block.super }}
+
+    <script src="{% static "main.js" %}"></script>
+{% endblock %}

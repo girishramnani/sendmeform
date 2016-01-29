@@ -1,0 +1,26 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+  <head>
+
+    <title>SendMeForm</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//cdn.muicss.com/mui-0.3.0/css/mui.min.css" rel="stylesheet" type="text/css" />
+     {% block css %}
+     
+     {% endblock %} 
+
+  </head>
+  <body>
+    {% block body %}
+    
+    {% endblock %}
+  </body>
+    {% block js %}
+        <script src="//cdn.muicss.com/mui-0.3.0/js/mui.min.js"></script>
+        <script src="{% static "admin/js/vendor/jquery/jquery.min.js" %}"></script>
+    
+    {% endblock %}
+</html>
