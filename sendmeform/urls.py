@@ -10,5 +10,5 @@ urlpatterns = [
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^',Index.as_view())
+    url(r'^$',Index.as_view(),name="index")
 ]
