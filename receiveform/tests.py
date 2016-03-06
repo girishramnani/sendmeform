@@ -21,8 +21,8 @@ class UserEntityTest(TestCase):
 
 
     def test_user_token(self):
-        self.assertEqual(len(self.user.public_key),36)
-        self.assertEqual(len(self.user.private_key),36)
+        self.assertEqual(len(self.user.public_key),32)
+        self.assertEqual(len(self.user.private_key),32)
 
     def test_duplicate_user(self):
         self.assertEqual(UserEntity.is_present("test@gmail.com"),True)
