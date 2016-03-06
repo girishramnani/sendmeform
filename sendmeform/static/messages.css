@@ -34,6 +34,8 @@
      -webkit-animation: animate-bg 5s linear infinite;
      -moz-animation: animate-bg 5s linear infinite;
     right: 0px;
+    cursor: pointer;
+    cursor: hand;
 }
 .info{
      background-color: #4ea5cd;

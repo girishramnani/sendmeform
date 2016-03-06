@@ -11,3 +11,5 @@ function hideAllMessages(){
                    $('.' + myMessages[i]).css('top', -messagesHeights[i]); //move element outside viewport
          }
 }
+
+$(".message").click(hideAllMessages);
