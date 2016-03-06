@@ -1,8 +1,11 @@
+from django.core.urlresolvers import reverse
+from django.template.base import Template
+from django.template.context import Context
 from django.test import TestCase
 
 # Create your tests here.
 from receiveform.models import UserEntity
-
+from django.test import Client
 
 
 
@@ -26,4 +29,32 @@ class UserEntityTest(TestCase):
 
     def test_new_user(self):
         self.assertEqual(UserEntity.is_present("new@gmail.com"),False)
+
+    def tearDown(self):
+        self.user.delete()
+
+
+class ClientEndpointTest(TestCase):
+
+
+    def setUp(self):
+        self.user = UserEntity(email="test@gmail.com")
+        self.user.save()
+        self.public_token = self.user.public_key
+
+
+    def test_data_send_default_page(self):
+
+        client = Client()
+        endpoint = reverse("endpoint",kwargs={'public_token':self.public_token})
+        resp = client.post(endpoint,{'name':self.public_token})
+        response_template = client.get(resp.url)
+
+
+        template = Template(open("templates/default_redirect_page.html").read())
+        context =Context({'hello':'world'})
+
+        self.assertEqual(template.render(context),response_template.rendered_content)
+
+
 
