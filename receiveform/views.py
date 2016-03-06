@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.http.response import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
@@ -10,22 +11,25 @@ from receiveform.models import UserEntity
 from receiveform.tasks import mock_send_mail
 
 
+
 class Index(TemplateView):
 
     template_name = "index.html"
 
-
     def post(self,request,*args,**kwargs):
 
         email = request.POST['email']
+
+
         if UserEntity.is_present(email):
-            print("already present")
+
+
+            messages.add_message(request,messages.ERROR,"That email already exists.")
             return redirect(reverse("index"))
         else:
             user = UserEntity(email=email)
-
             mock_send_mail(user)
-
+            messages.add_message(request,messages.SUCCESS,"Thank you for signing Up")
             user.save()
             context = self.get_context_data(**kwargs)
             return self.render_to_response(context)
@@ -38,5 +42,7 @@ class ClientDashBoard(TemplateView):
 
     def get(self, request, *args, **kwargs):
 
+
         private_token = self.kwargs['token']
         current_user = get_object_or_404(UserEntity,private_key = private_token)
+

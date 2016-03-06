@@ -1,6 +1,6 @@
 
 
-from celery import  task
+from celery import task
 
 
 

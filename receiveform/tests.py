@@ -8,8 +8,6 @@ from receiveform.models import UserEntity
 
 class UserEntityTest(TestCase):
 
-
-
     def setUp(self):
         self.user =UserEntity(email="test@gmail.com")
         self.user.save()
