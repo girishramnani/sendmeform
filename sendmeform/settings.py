@@ -99,13 +99,26 @@ USE_TZ = True
 # DATABASES['default'] = dj_database_url.config()
 #
 # # Enable Persistent Connections
-# DATABASES['default']['CONN_MAX_AGE'] = 500
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+DATABASES = {
+    'default':{
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'test',
+        'USER': 'g3',
+        'PASSWORD': 'girish',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+}
+
+DATABASES['default']['CONN_MAX_AGE'] = 500
+
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
 

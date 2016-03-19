@@ -7,6 +7,8 @@ from django.core.mail import send_mail
 from uuid import UUID
 # Create your views here.
 from django.views.generic.base import TemplateView, View, RedirectView
+from falcon.status_codes import HTTP_500
+
 from receiveform.models import UserEntity, DataStore
 from receiveform.tasks import mock_send_mail
 import json
@@ -61,12 +63,14 @@ class ClientFormEndpoint(RedirectView):
 
         json = request.POST.dict()
         try:
-            data = DataStore(userEntity=user,data=json)
+            data = DataStore(user=user,data=json)
             data.save()
-        except:
-            Http404("Database error")
+        except Exception as e:
 
-            return redirect(self.get_redirect_url())
+            return HttpResponse("There was something wrong with the server",status=HTTP_500)
+
+        return redirect(self.get_redirect_url())
+
 
 
 

@@ -1,13 +1,19 @@
+from datetime import datetime
+
 from django.core.urlresolvers import reverse
 from django.template.base import Template
 from django.template.context import Context
 from django.test import TestCase
 
 # Create your tests here.
-from receiveform.models import UserEntity
+from receiveform.models import UserEntity, DataStore
 from django.test import Client
 
 
+STUB_JSON = {
+    "name":"Girish Ramnani",
+    "message":"contact me asap",
+}
 
 class UserEntityTest(TestCase):
 
@@ -46,7 +52,7 @@ class ClientEndpointTest(TestCase):
     def test_data_send_default_page(self):
 
         client = Client()
-        endpoint = reverse("endpoint",kwargs={'public_token':self.public_token})
+        endpoint = reverse("FormEndpoint",kwargs={'public_token':self.public_token})
         resp = client.post(endpoint,{'name':self.public_token})
         response_template = client.get(resp.url)
 
@@ -57,4 +63,20 @@ class ClientEndpointTest(TestCase):
         self.assertEqual(template.render(context),response_template.rendered_content)
 
 
+
+class ClientDataEndpointTest(TestCase):
+
+    def setUp(self):
+        user = UserEntity(email="test@gmail.com")
+        user.save()
+        self.public_token = user.public_key
+
+    def test_json_data_saved(self):
+        client = Client()
+        endpoint = reverse("FormEndpoint",kwargs={'public_token':self.public_token})
+        resp = client.post(endpoint,STUB_JSON)
+        # resp.close()
+
+        store = UserEntity.objects.get(email="test@gmail.com").datastore_set.first()
+        self.assertEqual(store.data,STUB_JSON)
 
