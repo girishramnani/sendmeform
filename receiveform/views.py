@@ -47,7 +47,7 @@ class ClientDashBoard(TemplateView):
         current_user = UserEntity.objects.get(private_key=private_token)
 
         context["user"] = current_user
-        context["datastore"] = current_user.datastore_set.all()
+        context["datastore"] = current_user.datastore_set.order_by("-created_on")
 
         return self.render_to_response(context)
 

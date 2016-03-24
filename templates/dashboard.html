@@ -20,7 +20,7 @@
   <tbody>
     {% for item in datastore  %}
         <tr>
-            <td> {{ item.created_on | date }}</td>
+            <td> {{ item.created_on | timesince }}</td>
             <td><code>{{ item.data }}</code></td>
         </tr>
     {% endfor %}
