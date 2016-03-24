@@ -19,8 +19,9 @@ class UserEntity(models.Model):
     def is_present(cls,email):
         return cls.objects.filter(email=email).count() > 0
 
+from datetime import datetime
 
 class DataStore(models.Model):
     user = models.ForeignKey(UserEntity)
     data = JSONField()
-    # created_on = models.DateTimeField(auto_now_add=True)
+    created_on = models.DateTimeField(auto_now_add=True)
