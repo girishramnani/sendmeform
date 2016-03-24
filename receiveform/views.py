@@ -27,9 +27,9 @@ class Index(TemplateView):
             return redirect(reverse("index"))
         else:
             user = UserEntity(email=email)
+            user.save()
             mock_send_mail(user)
             messages.add_message(request,messages.SUCCESS,"Thank you for signing Up")
-            user.save()
             context = self.get_context_data(**kwargs)
             return self.render_to_response(context)
 
@@ -40,10 +40,14 @@ class ClientDashBoard(TemplateView):
     template_name = "dashboard.html"
 
     def get(self, request, *args, **kwargs):
-        # private_token = self.kwargs['token']
-
+        # test token : 8ce853f33e07426d9b21ec5b2c51b465d
         context = self.get_context_data(**kwargs)
-        # context['token'] = private_token
+        # try:
+        private_token = self.kwargs['token']
+        current_user = UserEntity.objects.get(private_key=private_token)
+
+        context["user"] = current_user
+        context["datastore"] = current_user.datastore_set.all()
 
         return self.render_to_response(context)
 
@@ -53,6 +57,9 @@ class ClientFormEndpoint(RedirectView):
 
 
     pattern_name = "fallbackRedirect"
+
+    def get(self, request, *args, **kwargs):
+        return HttpResponse("Unsupported Method")
 
     def post(self,request,*args,**kwargs):
         public_token = kwargs['public_token']

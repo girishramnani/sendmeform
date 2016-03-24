@@ -2,9 +2,36 @@
 
 {% block body %}
     {% include "flash.html"  %}
-    {% include "navbar.html" with list="dashboard_list.html" %}
+    {% include "navbar.html" with list="dashboard_list.html" user=user title="Inbox" %}
 
-    Dashboard of user : {{ user.email  }}
-    
+    <div class="mui-container-fluid padding-top">
+
+
+    <div class="mui-row ">
+        <div class="mui-col-sm-8 mui-col-sm-offset-1">
+        <div class="mui-panel">
+    <table class="mui-table mui-table--bordered">
+  <thead>
+    <tr>
+      <th>Date created</th>
+      <th>Store Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in datastore  %}
+        <tr>
+            <td> undefined </td>
+            <td><code>{{ item.data }}</code></td>
+        </tr>
+    {% endfor %}
+
+
+  </tbody>
+</table>
+        </div>
+        </div>
+    </div>
+
+    </div>
 
 {% endblock %}

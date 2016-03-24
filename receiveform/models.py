@@ -23,3 +23,4 @@ class UserEntity(models.Model):
 class DataStore(models.Model):
     user = models.ForeignKey(UserEntity)
     data = JSONField()
+    # created_on = models.DateTimeField(auto_now_add=True)

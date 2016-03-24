@@ -2,7 +2,9 @@
   <div class="mui-container">
   <table width="100%">
     <tr class="mui--appbar-height">
-      <td class="mui--text-title">SendMeForm</td>
+
+
+      <td class="mui--text-title">{% if title %}{{ user.email }}'s {{ title }}{% else %} SendMeForm {% endif %}</td>
       <td align="right">
         <ul class="mui-list--inline mui--text-body2">
             {% if not list %}

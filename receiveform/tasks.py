@@ -13,5 +13,5 @@ def mock_send_mail(entity):
     :param entity:
     :return:
     """
-    print("sent email to {0} having public token {1}".format(entity.email,entity.public_key))
+    print("sent email to {0} having public token {1}".format(entity.email,entity.private_key))
     return True
