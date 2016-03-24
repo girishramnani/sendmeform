@@ -64,7 +64,7 @@ class ClientEndpointTest(TestCase):
 
 
 
-class ClientDataEndpointTest(TestCase):
+class DashboardTest(TestCase):
 
     def setUp(self):
         user = UserEntity(email="test@gmail.com")

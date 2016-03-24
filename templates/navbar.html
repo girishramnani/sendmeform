@@ -5,8 +5,13 @@
       <td class="mui--text-title">SendMeForm</td>
       <td align="right">
         <ul class="mui-list--inline mui--text-body2">
+            {% if not list %}
           <li><a href="#">About</a></li>
           <li><a href="#">inbox</a></li>
+            {% else %}
+            {% include list %}
+            {% endif %}
+
         </ul>
       </td>
     </tr>

@@ -1,0 +1,20 @@
+{% if messages %}
+        <ul class="messages">
+        {% for message in messages  %}
+            <li
+                    class="
+                    {%  if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                    error
+                    {% elif message.level  == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                    success
+                    {% endif %}
+                    message">
+                <h3>{{ message }}</h3>
+{#                <p>This is just a success notification message.</p>#}
+            </li>
+
+        {% endfor %}
+
+        </ul>
+
+    {% endif %}

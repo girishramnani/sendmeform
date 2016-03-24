@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 
 {% block body %}
+    {% include "flash.html"  %}
+    {% include "navbar.html" with list="dashboard_list.html" %}
 
- {{ token }}
+    Dashboard of user : {{ user.email  }}
+    
 
 {% endblock %}

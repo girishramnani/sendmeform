@@ -1,7 +1,7 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.views.generic.base import TemplateView
-
+from django.conf import settings
 from receiveform import views
 from receiveform.views import Index, ClientDashBoard, ClientFormEndpoint
 urlpatterns = [
@@ -10,9 +10,14 @@ urlpatterns = [
     # url(r'^blog/', include('blog.urls')),
     url(r'^staticPage$',TemplateView.as_view(template_name="default_redirect_page.html") \
         ,name="fallbackRedirect"),
-    url(r"^(?P<public_token>\w+)",ClientFormEndpoint.as_view(),name="FormEndpoint"),
+
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$',Index.as_view(),name="index"),
+
     url(r'^user/(?P<token>\w+)',ClientDashBoard.as_view(),name="dashboard"),
+     url(r"^(?P<public_token>\w+)",ClientFormEndpoint.as_view(),name="FormEndpoint"),
 
 ]
+
+if settings.DEBUG :
+    urlpatterns.insert(0,url(r"^dashboard/",ClientDashBoard.as_view(),name="debugDashboard"))

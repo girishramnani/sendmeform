@@ -40,10 +40,10 @@ class ClientDashBoard(TemplateView):
     template_name = "dashboard.html"
 
     def get(self, request, *args, **kwargs):
-        private_token = self.kwargs['token']
+        # private_token = self.kwargs['token']
 
         context = self.get_context_data(**kwargs)
-        context['token'] = private_token
+        # context['token'] = private_token
 
         return self.render_to_response(context)
 
