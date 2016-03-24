@@ -40,12 +40,14 @@ class ClientDashBoard(TemplateView):
     template_name = "dashboard.html"
 
     def get(self, request, *args, **kwargs):
+
         # test token : 8ce853f33e07426d9b21ec5b2c51b465d
         context = self.get_context_data(**kwargs)
-        # try:
-        private_token = self.kwargs['token']
-        current_user = UserEntity.objects.get(private_key=private_token)
-
+        try:
+            private_token = self.kwargs['token']
+            current_user = UserEntity.objects.get(private_key=private_token)
+        except (ObjectDoesNotExist,ValueError) as e:
+            raise Http404("User token is invalid")
         context["user"] = current_user
         context["datastore"] = current_user.datastore_set.order_by("-created_on")
 
