@@ -13,3 +13,17 @@ function hideAllMessages(){
 }
 
 $(".message").click(hideAllMessages);
+
+function showModal(){
+    // initialize modal element
+    var modalEl = document.createElement('div');
+    modalEl.style.width = '400px';
+    modalEl.style.height = '300px';
+    modalEl.style.margin = '100px auto';
+    modalEl.style.backgroundColor = '#fff';
+
+    // show modal
+    mui.overlay('on', modalEl);
+
+
+  }

@@ -18,6 +18,3 @@ urlpatterns = [
      url(r"^(?P<public_token>\w+)",ClientFormEndpoint.as_view(),name="FormEndpoint"),
 
 ]
-
-if settings.DEBUG :
-    urlpatterns.insert(0,url(r"^dashboard/",ClientDashBoard.as_view(),name="debugDashboard"))
