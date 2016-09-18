@@ -72,11 +72,12 @@ class DashboardTest(TestCase):
         self.public_token = user.public_key
 
     def test_json_data_saved(self):
+        #private key: 2caca5bf6fbb4262bc50e23503627691
+        #public key: e3d5496f88fb4d178799e4d17f37f2e6
         client = Client()
         endpoint = reverse("FormEndpoint",kwargs={'public_token':self.public_token})
         resp = client.post(endpoint,STUB_JSON)
         # resp.close()
-
         store = UserEntity.objects.get(email="test@gmail.com").datastore_set.first()
         self.assertEqual(store.data,STUB_JSON)
 

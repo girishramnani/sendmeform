@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="//cdn.muicss.com/mui-0.3.0/css/mui.min.css" rel="stylesheet" type="text/css" />
+    <link href="{% static "css/mui.min.css" %}" rel="stylesheet" type="text/css" />
       <link rel="stylesheet" href="{% static "style.css" %}">
     <link rel="stylesheet" href="{% static "messages.css" %}">
      {% block css %}
@@ -21,7 +21,7 @@
     {% endblock %}
   </body>
     {% block js %}
-        <script src="//cdn.muicss.com/mui-0.3.0/js/mui.min.js"></script>
+        <script src="{% static "js/mui.min.js" %}"></script>
         <script src="{% static "admin/js/vendor/jquery/jquery.min.js" %}"></script>
     
     {% endblock %}
